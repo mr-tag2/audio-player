@@ -140,12 +140,12 @@
         }
         //PREPARE CONTROLS inner elements to display [play, stop, forward or backward] in the given order
         else if (this.settings.elements[elemItem] == "controls") {
-          // $.inArray("backward", this.settings.controlElements) != "-1"
-          //   ? (backwardElem = "<div class='rew'></div>")
-          //   : (backwardElem = " ");
-          // $.inArray("forward", this.settings.controlElements) != "-1"
-          //   ? (forwardElem = "<div class='fwd'></div>")
-          //   : (forwardElem = " ");
+          $.inArray("backward", this.settings.controlElements) != "-1"
+            ? (backwardElem = "<div class='rew'></div>")
+            : (backwardElem = " ");
+          $.inArray("forward", this.settings.controlElements) != "-1"
+            ? (forwardElem = "<div class='fwd'></div>")
+            : (forwardElem = " ");
           // $.inArray("stop", this.settings.controlElements) != "-1"
           //   ? (stopElem = "<div class='stop'></div>")
           //   : (stopElem = " ");
@@ -249,17 +249,17 @@
         e.preventDefault();
 
         playerThis.stopAudio();
+        playerThis.song.currentTime += 30;
+        // var next = playerThis.getSong(true);
 
-        var next = playerThis.getSong(true);
+        // //Looping Activated : play the first item on the playlist if there is no next item with(looping)
+        // if (next.length == 0) {
+        //   next = $(playerThis.playlistHolder).find(
+        //     playerThis.playlistItemSelector + ":first"
+        //   );
+        // }
 
-        //Looping Activated : play the first item on the playlist if there is no next item with(looping)
-        if (next.length == 0) {
-          next = $(playerThis.playlistHolder).find(
-            playerThis.playlistItemSelector + ":first"
-          );
-        }
-
-        playerThis.loadNewSong(next);
+        // playerThis.loadNewSong(next);
         playerThis.playAudio();
 
         //issue forward callback
@@ -271,17 +271,18 @@
         e.preventDefault();
 
         playerThis.stopAudio();
+        playerThis.song.currentTime -= 30;
 
-        var prev = playerThis.getSong(false);
+        // var prev = playerThis.getSong(false);
 
-        //play the last item on the playlist if there is no previous item (looping)
-        if (prev.length == 0) {
-          prev = $(playerThis.playlistHolder).find(
-            playerThis.playlistItemSelector + ":last"
-          );
-        }
+        // //play the last item on the playlist if there is no previous item (looping)
+        // if (prev.length == 0) {
+        //   prev = $(playerThis.playlistHolder).find(
+        //     playerThis.playlistItemSelector + ":last"
+        //   );
+        // }
 
-        playerThis.loadNewSong(prev);
+        // playerThis.loadNewSong(prev);
         playerThis.playAudio();
 
         //issue backward callback
