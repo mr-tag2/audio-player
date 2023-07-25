@@ -27,10 +27,12 @@ header h2 {
 .player {
   background: #f09f8b;
   height: 220px;
-  position: relative;
+  position: fixed;
   width: 100%;
   z-index: 2;
   display: none;
+  bottom: 0;
+  left: 0;
 }
 .title,
 .artist {

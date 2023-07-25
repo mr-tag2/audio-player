@@ -502,12 +502,23 @@
         //   console.log("diuhewdhieu");
         //   $(`${Ids[0]} .player`).css("display", "none");
         // });
-        $(Ids[1]).click(function (e) {
-          $(`${Ids[0]} .player`).css("display", "block");
-          thisElement.playAudio();
+        $(Ids[1]).off("click");
+        $(Ids[1]).on("click", function (e) {
+          $(`${Ids[0]} .player`).css("display", "flex");
+          console.log($(Ids[1]).data("played"));
+          if ($(Ids[1]).data("played") == "true") {
+            $(Ids[1]).data("played", "false");
+            $(Ids[1]).text("Play");
+            thisElement.stopAudio();
+          } else {
+            $(Ids[1]).data("played", "true");
+            $(Ids[1]).text("Pause");
+            thisElement.playAudio();
+          }
         });
-        $(`${Ids[0]} ${Ids[2]}`).click(function (e) {
-          $(`${Ids[0]} .player`).css("display", "block");
+        $(`${Ids[0]} ${Ids[2]}`).off("click");
+        $(`${Ids[0]} ${Ids[2]}`).on("click", function (e) {
+          $(`${Ids[0]} .player`).css("display", "flex");
           thisElement.playAudio();
         });
       }
