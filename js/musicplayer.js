@@ -7,7 +7,7 @@
   // Create the defaults once
   var pluginName = "musicPlayer",
     defaults = {
-      playlistItemSelector: "li",
+      playlistItemSelector: "li .play",
       autoPlay: false,
       volume: 80,
       loop: false,
@@ -214,10 +214,13 @@
       //Hide Volume control on IOS devices.
       if (/iPad|iPhone|iPod/.test(navigator.userAgent))
         $(this.volumeInfo).hide();
-
       // initialization - first element in playlist
       this.initAudio(
-        $(this.playlistHolder.find(this.playlistItemSelector + ":first"))
+        $(
+          this.playlistHolder.find(
+            $(this.playlistItemSelector + ":first").parent("li")
+          )
+        )
       );
 
       // set volume
@@ -305,9 +308,8 @@
         .find(this.playlistItemSelector)
         .click(function (e) {
           e.preventDefault();
-
           playerThis.stopAudio();
-          playerThis.loadNewSong($(this));
+          playerThis.loadNewSong($(this).parent("li"));
           playerThis.playAudio();
 
           //issue track clicked callback
@@ -348,12 +350,12 @@
     },
 
     initAudio: function (elem) {
-      var url = elem.children("a:first-child").attr("href"),
-        title = elem.text(),
+      var url = elem.children("h4:first-child").data("href"),
+        title = elem.children("h4:first-child").text(),
         cover = elem.attr("data-cover"),
         artist = elem.attr("data-artist"),
+        imgPlay = elem.find(".play"),
         playerInstance = this;
-
       //Set the title of the song  on the player
       $(this.trackInfo).children(".title").text(title);
       //Set the artist name on the player
@@ -524,9 +526,15 @@
       }
     },
 
+    controlIconList: function (imgPlay, isPlay) {
+      $(document).find("li .play").attr("src", "/images/play.png");
+      if (isPlay == true) imgPlay.attr("src", "/images/pause.png");
+      else if (isPlay == false) imgPlay.attr("src", "/images/play.png");
+    },
+
     playAudio: function () {
       this.song.play();
-
+      debugger;
       //Add playing class
       this.playerHolder.addClass(this.cssClass.playing);
 

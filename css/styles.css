@@ -7,7 +7,7 @@
   padding: 0;
 }
 body {
-  background-color: #141942;
+  background-color: #F5F5F5;
 }
 
 header h2 {
@@ -219,9 +219,7 @@ header h2 {
   width: 13px;
 }
 .playlist {
-  background-color: #fff;
   list-style-type: none;
-  margin: -10px 0 0 2px;
   padding-bottom: 10px;
   padding-top: 15px;
   position: relative;
@@ -234,11 +232,20 @@ header h2 {
   color: #151b48;
   cursor: pointer;
   margin: 0 0 5px 15px;
+  background: #fff;
+  text-align: right;
+  padding: 20px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 20px;
+  position: relative;
 }
 .playlist li > a,
 .playlist div > a {
   color: #151b48;
   text-decoration: none;
+ 
 }
 .playlist li.active,
 .playlist div.active {
@@ -249,4 +256,15 @@ header h2 {
 }
 .slick-dots li button:before {
   font-size: 8px !important;
+}
+p.caption{
+  font-size: small;
+  color:#868686
+}
+
+img.play{
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  left: 20px;
 }
