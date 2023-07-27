@@ -354,8 +354,9 @@
         title = elem.children("h4:first-child").text(),
         cover = elem.attr("data-cover"),
         artist = elem.attr("data-artist"),
-        imgPlay = elem.find(".play"),
         playerInstance = this;
+
+      this.playerInstance = elem;
       //Set the title of the song  on the player
       $(this.trackInfo).children(".title").text(title);
       //Set the artist name on the player
@@ -510,11 +511,11 @@
           console.log($(Ids[1]).data("played"));
           if ($(Ids[1]).data("played") == "true") {
             $(Ids[1]).data("played", "false");
-            $(Ids[1]).text("Play");
+            $(Ids[1]).find("img").attr("src", "/images/listHeaderPlay.png");
             thisElement.stopAudio();
           } else {
             $(Ids[1]).data("played", "true");
-            $(Ids[1]).text("Pause");
+            $(Ids[1]).find("img").attr("src", "/images/listHeaderPause.png");
             thisElement.playAudio();
           }
         });
@@ -527,14 +528,20 @@
     },
 
     controlIconList: function (imgPlay, isPlay) {
-      $(document).find("li .play").attr("src", "/images/play.png");
-      if (isPlay == true) imgPlay.attr("src", "/images/pause.png");
-      else if (isPlay == false) imgPlay.attr("src", "/images/play.png");
+      $(document).find("li .play").attr("src", "/images/listPlay.png");
+      if (isPlay == true) imgPlay.attr("src", "/images/listPause.png");
+      else if (isPlay == false) imgPlay.attr("src", "/images/listPlay.png");
     },
 
     playAudio: function () {
       this.song.play();
-      debugger;
+      this.controlIconList(this.playerInstance.find(".play"), true);
+      const Ids = this.settings.playerControllersIds;
+      if (Ids) {
+        $(Ids[1]).data("played", "true");
+        $(Ids[1]).find("img").attr("src", "/images/listHeaderPause.png");
+      }
+
       //Add playing class
       this.playerHolder.addClass(this.cssClass.playing);
 
@@ -553,6 +560,12 @@
       this.song.pause();
       //Remove playing class
       this.playerHolder.removeClass(this.cssClass.playing);
+      this.controlIconList();
+      const Ids = this.settings.playerControllersIds;
+      if (Ids) {
+        $(Ids[1]).data("played", "false");
+        $(Ids[1]).find("img").attr("src", "/images/listHeaderPlay.png");
+      }
 
       //Hide pause Icon and show play if they exist
       if (

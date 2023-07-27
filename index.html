@@ -34,7 +34,13 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
     ></script>
 
-    <button id="playerButton" style="font-size: large">Play</button>
+    <button id="playerButton" style="font-size: large">
+      <img
+        style="height: 50px; width: 50px"
+        src="/images/listHeaderPlay.png"
+        alt=""
+      />
+    </button>
 
     <div class="example">
       <ul class="playlist">
@@ -43,32 +49,86 @@
           data-artist="تست 1"
           class="playlist-item"
         >
-          <h4 data-href="/data/epic.mp3">   <p> تایتل</p> </h4>
-          .  <p class="caption">تست 1</p>
-          <img class="play" src="/images/play.png" alt="">
+          <h4 data-href="/data/epic.mp3"><p>تایتل</p></h4>
+          .
+          <p class="caption">تست 1</p>
+          <img class="play" src="/images/play.png" alt="" />
         </li>
         <li
           data-cover="/images/cover.jpg"
           data-artist="تست ۲"
           class="playlist-item"
         >
-          <h4 data-href="/data/epic.mp3">  <p > تایتل ۲</p> </h4>
-          .  <p class="caption">تست ۲</p>
-          <img class="play" src="/images/play.png" alt="">
-
+          <h4 data-href="/data/epic.mp3"><p>تایتل ۲</p></h4>
+          .
+          <p class="caption">تست ۲</p>
+          <img class="play" src="/images/play.png" alt="" />
         </li>
-
         <li
-          data-cover="/images/cover.jpg
+          data-cover="/images/cover.jpg"
           data-artist="تست ۳"
           class="playlist-item"
         >
-          <h4 data-href="/data/epic.mp3">  <p > تایتل ۳</p> </h4>
-          .  <p class="caption">تست ۳</p>
-          <img class="play" src="/images/play.png" alt="">
-
+          <h4 data-href="/data/epic.mp3"><p>تایتل ۳</p></h4>
+          .
+          <p class="caption">تست ۳</p>
+          <img class="play" src="/images/play.png" alt="" />
+        </li>
+        <li
+          data-cover="/images/cover.jpg"
+          data-artist="تست 4"
+          class="playlist-item"
+        >
+          <h4 data-href="/data/epic.mp3"><p>تایتل 4</p></h4>
+          .
+          <p class="caption">تست 4</p>
+          <img class="play" src="/images/play.png" alt="" />
+        </li>
+        <li
+          data-cover="/images/cover.jpg"
+          data-artist="تست 5"
+          class="playlist-item extra"
+        >
+          <h4 data-href="/data/epic.mp3"><p>تایتل 5</p></h4>
+          .
+          <p class="caption">تست 5</p>
+          <img class="play" src="/images/play.png" alt="" />
+        </li>
+        <li
+          data-cover="/images/cover.jpg"
+          data-artist="تست 6"
+          class="playlist-item extra"
+        >
+          <h4 data-href="/data/epic.mp3"><p>تایتل 6</p></h4>
+          .
+          <p class="caption">تست 6</p>
+          <img class="play" src="/images/play.png" alt="" />
+        </li>
+        <li
+          data-cover="/images/cover.jpg"
+          data-artist="تست 7"
+          class="playlist-item extra"
+        >
+          <h4 data-href="/data/epic.mp3"><p>تایتل 7</p></h4>
+          .
+          <p class="caption">تست 7</p>
+          <img class="play" src="/images/play.png" alt="" />
+        </li>
+        <li
+          data-cover="/images/cover.jpg"
+          data-artist="تست 8"
+          class="playlist-item extra"
+        >
+          <h4 data-href="/data/epic.mp3"><p>تایتل 8</p></h4>
+          .
+          <p class="caption">تست 8</p>
+          <img class="play" src="/images/play.png" alt="" />
         </li>
       </ul>
+      <button data-show="false" class="more-btn" onclick="moreShow()">
+        <p>پادکست های بیشتر</p>
+        <img src="/images/arrow-down.png" alt="" />
+      </button>
     </div>
 
     <script>
@@ -143,6 +203,20 @@
         index = '[data-slick-index="' + index + '"]';
         $(".slick-slide:not(.slick-cloned)" + index + " .song-item a").click();
       });
+
+      function moreShow() {
+        if ($(".more-btn").data("show") == "true") {
+          $(".more-btn").data("show", "false");
+          $(".more-btn").find("img").removeClass("up");
+          $(".more-btn").find("p").text("پادکست های بیشتر");
+          $(".extra").css("display", "none");
+        } else {
+          $(".more-btn").data("show", "true");
+          $(".more-btn").find("img").addClass("up");
+          $(".more-btn").find("p").text("پادکست های کمتر");
+          $(".extra").css("display", "flex");
+        }
+      }
     </script>
   </body>
 </html>
