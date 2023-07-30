@@ -519,11 +519,11 @@
             thisElement.playAudio();
           }
         });
-        $(`${Ids[0]} ${Ids[2]}`).off("click");
-        $(`${Ids[0]} ${Ids[2]}`).on("click", function (e) {
-          $(`${Ids[0]} .player`).css("display", "flex");
-          thisElement.playAudio();
-        });
+        // $(`${Ids[0]} ${Ids[2]}`).off("click");
+        // $(`${Ids[0]} ${Ids[2]} .play`).on("click", function (e) {
+        //   $(`${Ids[0]} .player`).css("display", "flex");
+        //   thisElement.playAudio();
+        // });
       }
     },
 
@@ -540,6 +540,7 @@
       if (Ids) {
         $(Ids[1]).data("played", "true");
         $(Ids[1]).find("img").attr("src", "/images/listHeaderPause.png");
+        $(`${Ids[0]} .player`).css("display", "flex");
       }
 
       //Add playing class

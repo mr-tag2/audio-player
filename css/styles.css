@@ -204,6 +204,7 @@ a .volume {
   top: 0;
 }
 .bar-loaded {
+  width: 100% !important;
   background-color: #33b37d30;
   z-index: 1;
 }
