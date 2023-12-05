@@ -220,7 +220,8 @@
           this.playlistHolder.find(
             $(this.playlistItemSelector + ":first").parent("li")
           )
-        )
+        ),
+        true
       );
 
       // set volume
@@ -349,7 +350,7 @@
       );
     },
 
-    initAudio: function (elem) {
+    initAudio: function (elem, firstInit) {
       var url = elem.children("h4:first-child").data("href"),
         title = elem.children("h4:first-child").text(),
         cover = elem.attr("data-cover"),
@@ -487,10 +488,12 @@
           playerInstance.settings.seeked();
         });
 
-      $(this.playlistHolder)
-        .find(playerInstance.playlistItemSelector)
-        .removeClass("active");
-      elem.addClass("active");
+      console.log(
+        "🚀 ~ file: musicplayer.js:490 ~ playerInstance.playlistItemSelector:",
+        playerInstance.playlistItemSelector
+      );
+      $(this.playlistHolder).find("li.active").removeClass("active");
+      if (!firstInit) elem.addClass("active");
 
       //issue Callback
       this.settings.onLoad();
